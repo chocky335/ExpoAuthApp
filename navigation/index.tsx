@@ -8,10 +8,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName } from 'react-native';
 
-import NotAuthorized from '../screens/NotAuthorized';
-import Authorized from '../screens/Authorized';
+import NotAuthorizedScreen from '../screens/NotAuthorized';
+import AuthorizeScreen from '../screens/Authorized';
 import { RootStackParamList } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import AuthContext, { selectorIsAuth, selectorIsLoading } from '../context/AuthService';
+
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -30,10 +32,13 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  const authState = React.useContext(AuthContext)
+  const isAuth = selectorIsAuth(authState)
+
   return (
     <Stack.Navigator>
-      <Stack.Screen name="NotAuthorized" component={NotAuthorized} options={{ title: 'Please authorize' }} />
-      <Stack.Screen name="Authorized" component={Authorized} options={{ title: 'Authorized' }} />
+      {!isAuth && <Stack.Screen name="NotAuthorized" component={NotAuthorizedScreen} options={{ title: 'Please authorize' }} />}
+      {isAuth && <Stack.Screen name="Authorized" component={AuthorizeScreen} options={{ title: 'Authorized' }} />}
     </Stack.Navigator>
   );
 }
