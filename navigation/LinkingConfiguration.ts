@@ -15,6 +15,7 @@ const linking: LinkingOptions<RootStackParamList> = {
     screens: {
       Authorized: 'dash',
       NotAuthorized: 'welcome',
+      NotFound: '*',
     },
   },
 };

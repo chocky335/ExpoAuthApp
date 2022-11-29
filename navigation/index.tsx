@@ -10,6 +10,7 @@ import { ColorSchemeName } from 'react-native';
 
 import NotAuthorizedScreen from '../screens/NotAuthorized';
 import AuthorizeScreen from '../screens/Authorized';
+import NotFoundScreen from '../screens/NotFound';
 import { RootStackParamList } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import AuthContext, { selectorIsAuth, selectorIsLoading } from '../context/AuthService';
@@ -39,6 +40,7 @@ function RootNavigator() {
     <Stack.Navigator>
       {!isAuth && <Stack.Screen name="NotAuthorized" component={NotAuthorizedScreen} options={{ title: 'Please authorize' }} />}
       {isAuth && <Stack.Screen name="Authorized" component={AuthorizeScreen} options={{ title: 'Authorized' }} />}
+      <Stack.Screen name="NotFound" component={NotFoundScreen} />
     </Stack.Navigator>
   );
 }

@@ -14,6 +14,7 @@ declare global {
 export type RootStackParamList = {
   Authorized: undefined;
   NotAuthorized: undefined;
+  NotFound: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
