@@ -1,15 +1,23 @@
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { useContext } from 'react';
+import { StyleSheet } from 'react-native';
+import PrimaryButton from '../components/StyledButton';
+import { MonoText } from '../components/StyledText';
 
-import { Text, View } from '../components/Themed';
+import { View } from '../components/Themed';
+import AuthContext from '../context/AuthService';
+import useEmail from '../hooks/useEmail';
 import { RootStackScreenProps } from '../types';
 
 export default function AuthorizedScreen({}: RootStackScreenProps<'Authorized'>) {
+  const email = useEmail()
+  const {state, logout} = useContext(AuthContext)
+  const provider = state && typeof state !== 'string' && state.provider || ''
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>This screen doesn't exist.</Text>
-      <TouchableOpacity onPress={() => {}} style={styles.link}>
-        <Text style={styles.linkText}>Go to home screen!</Text>
-      </TouchableOpacity>
+      <MonoText>Provider: {provider}</MonoText>
+      <MonoText>{email}</MonoText>
+      <PrimaryButton onPress={logout} title={'Logout'} />
     </View>
   );
 }
