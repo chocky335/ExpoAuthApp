@@ -1,6 +1,7 @@
 {
   "name": "expoauthapp",
-  "version": "1.0.0",
+  "version": "0.1.0",
+  "homepage": "https://chocky335.xyz",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -8,7 +9,8 @@
     "android:eas:dev": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "deploy:web": "sh ./scripts/deployWeb.sh"
   },
   "jest": {
     "preset": "jest-expo"
@@ -45,6 +47,7 @@
     "@babel/core": "^7.12.9",
     "@types/react": "~18.0.24",
     "@types/react-native": "~0.70.6",
+    "gh-pages": "^4.0.0",
     "jest": "^26.6.3",
     "jest-expo": "~47.0.1",
     "react-test-renderer": "18.1.0",
